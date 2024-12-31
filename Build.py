@@ -26,6 +26,7 @@ class os_enum(object):
     Linux = 1
     Win = 2
     Android = 3
+    Mac = 4
 
     @staticmethod
     def toString(eVal):
@@ -35,6 +36,8 @@ class os_enum(object):
             return "Win"
         elif eVal == os_enum.Android:
             return "Android"
+        elif eVal == os_enum.Mac:
+            return "Mac"
         return ""
 
 class arch_enum(object):
@@ -63,7 +66,7 @@ class configuration_enum(object):
 
 def main():
     parser = OptionParser(usage='usage: %prog [options]', description = "Generate build make / sln files")
-    parser.add_option("--os", dest="os", help="Set the operating system (Linux [For Linux or Cygwin]/ Windows / Android)", default='')
+    parser.add_option("--os", dest="os", help="Set the operating system (Linux [For Linux or Cygwin]/ Windows / Android / Mac)", default='')
     parser.add_option("--arch", dest="arch", help="Set the architecture (32 / 64 bit) [Default 64]", default='64')
     parser.add_option("--conf", dest="conf", help="Set the configuration (Release / Debug) [Default Release]", default='Release')
     parser.add_option("--c", dest="c_compiler", help="Set the C compiler [Default: the default in system (Optional)]", default='')
@@ -109,8 +112,10 @@ def main():
         operatingSys = os_enum.Win
     elif options.os.lower() == "android":
         operatingSys = os_enum.Android
+    elif options.os.lower() == "mac":
+        operatingSys = os_enum.Mac
     elif options.os.lower() != "linux":
-        sys.exit("Error: Please define the OS (Linux / Windows / Android)")
+        sys.exit("Error: Please define the OS (Linux / Windows / Android / Mac)")
 
     cmake_generator = options.generator
     if operatingSys == os_enum.Win and not cmake_generator:
