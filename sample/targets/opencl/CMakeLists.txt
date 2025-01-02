@@ -26,7 +26,13 @@ if ( EXPERIMENTAL_USE_OPENCL )
                      ${VX_HEADER_DIR}
 					 ${CMAKE_SOURCE_DIR}/debug
                      ${OPENCL_INCLUDE_PATH} )
-					     					 
+
+    IF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+	    MESSAGE(STATUS "current platform: Mac OS X")
+        SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -framework OpenCL")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenCL")
+    ENDIF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+
     set( INVERTED_COMMA "\"" )
 	set( CL_SOURCE_DIR ${INVERTED_COMMA}${CMAKE_SOURCE_DIR}/kernels/opencl${INVERTED_COMMA} )
 					 

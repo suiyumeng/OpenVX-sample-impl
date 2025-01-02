@@ -100,7 +100,7 @@ vx_status ownLoadTarget(vx_context context, vx_char *name)
                     context->targets[index].funcs.addkernel)
                     /* tiling kernel function can be NULL */
                 {
-                    VX_PRINT(VX_ZONE_TARGET, "Loaded target %s\n", module);
+                    VX_PRINT(VX_ZONE_TARGET, "Loaded target[%d] %s\n", index, module);
                     status = VX_SUCCESS;
                 }
                 else

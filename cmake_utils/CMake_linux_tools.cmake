@@ -29,7 +29,7 @@ endif (CYGWIN)
 
 if(BUILD_X64)
   if (EXPERIMENTAL_USE_VENUM OR OPENVX_USE_TILING OR EXPERIMENTAL_USE_OPENCL)
-    set(ARCH_BIT "-mfpu=neon")
+    #set(ARCH_BIT "-mfpu=neon")
   else ()
     set(ARCH_BIT -m64 )
   endif(EXPERIMENTAL_USE_VENUM OR OPENVX_USE_TILING OR EXPERIMENTAL_USE_OPENCL)
@@ -38,7 +38,7 @@ else()
     # architecture will be according to ATOM
     set(ARCH_BIT -m32 )
   elseif (EXPERIMENTAL_USE_VENUM OR OPENVX_USE_TILING OR EXPERIMENTAL_USE_OPENCL)
-    set(ARCH_BIT "-mfpu=neon")
+    #set(ARCH_BIT "-mfpu=neon")
   else ()
     # need to force a more modern architecture than the degault m32 (i386).
     set(ARCH_BIT "-m32 -march=core2" )

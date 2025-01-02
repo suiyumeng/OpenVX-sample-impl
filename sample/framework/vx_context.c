@@ -513,7 +513,7 @@ VX_API_ENTRY vx_context VX_API_CALL vxCreateContext(void)
                 ownSemPost(&context_lock);
                 return 0;
             }
-
+            VX_PRINT(VX_ZONE_TARGET, "context->num_targets=%u\n", context->num_targets);
             /* initialize all targets */
             for (t = 0u; t < context->num_targets; t++)
             {
@@ -522,7 +522,7 @@ VX_API_ENTRY vx_context VX_API_CALL vxCreateContext(void)
                     /* call the init function */
                     if (context->targets[t].funcs.init(&context->targets[t]) != VX_SUCCESS)
                     {
-                        VX_PRINT(VX_ZONE_WARNING, "Target %s failed to initialize!\n", context->targets[t].name);
+                        VX_PRINT(VX_ZONE_ERROR, "Target[%d] %s failed to initialize!\n", t, context->targets[t].name);
                         /* unload this module */
                         ownUnloadTarget(context, t, vx_true_e);
                         break;
@@ -531,6 +531,7 @@ VX_API_ENTRY vx_context VX_API_CALL vxCreateContext(void)
                     {
                         context->targets[t].enabled = vx_true_e;
                     }
+                    VX_PRINT(VX_ZONE_TARGET, "Target[%d] %s initialized!\n", t, context->targets[t].name);
                 }
             }
 

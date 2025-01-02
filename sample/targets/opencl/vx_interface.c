@@ -78,8 +78,10 @@ vx_status vxTargetInit(vx_target_t *target)
     //char *cl_dirs = "/home/pi/sample-impl-opencl/kernels/opencl";
 	char cl_args[1024];
 
-    if(NULL == vx_incs)
+    if(NULL == vx_incs) {
+        VX_PRINT(VX_ZONE_ERROR, "VX_CL_INCLUDE_DIR not set\n");
         return VX_FAILURE;
+    }
 
     snprintf(cl_args, sizeof(cl_args), "-D VX_CL_KERNEL -I %s -I %s %s %s", vx_incs, cl_dirs,
 #if !defined(__APPLE__)
