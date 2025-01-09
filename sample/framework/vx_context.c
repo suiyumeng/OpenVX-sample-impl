@@ -31,6 +31,9 @@ vx_char targetModules[][VX_MAX_TARGET_NAME] = {
 #if defined(EXPERIMENTAL_USE_VENUM)
     "openvx-venum",
 #endif
+#if defined(EXPERIMENTAL_USE_MY_TARGET)
+    "openvx-mytarget",
+#endif
     "openvx-c_model",
 };
 

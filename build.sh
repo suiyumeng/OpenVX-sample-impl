@@ -7,7 +7,9 @@ rm -rf build
 system=`uname`
 if [ "$system" == "Darwin" ]; then
     echo "This is macOS"
-    python3 Build.py --os=Mac --arch=32 --conf=Debug --opencl
+    #python3 Build.py --os=Mac --arch=64 --conf=Debug --mytarget --opencl
+    python3 Build.py --os=Mac --arch=64 --conf=Debug --mytarget
+    #python3 Build.py --os=Mac --arch=64 --conf=Debug
 else
     echo "This is Linux"
     python3 Build.py --os=Linux --arch=32 --conf=Debug --opencl

@@ -5,7 +5,8 @@ set( TARGET_NAME openvx_test )
 
 #3.head file path，头文件目录
 INCLUDE_DIRECTORIES(inc)
-
+message(STATUS "VX_HEADER_DIR: ${VX_HEADER_DIR}")
+message(STATUS "CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 include_directories( BEFORE
                      ${CMAKE_CURRENT_SOURCE_DIR}
                      ${VX_HEADER_DIR}
@@ -17,7 +18,7 @@ find_package( OpenCV REQUIRED )
 SET(LIBS ${LIBS} ${OpenCV_LIBS})
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++11")
-SET(LIBS ${LIBS} pthread vx_xyz_lib openvx-debug-lib openvx-extras-lib openvx-helper openvx vxu)
+SET(LIBS ${LIBS} pthread vx_xyz_lib openvx-debug-lib openvx-extras-lib openvx-helper openvx vxu openvx-mytarget)
 
 #6.add executable file，添加要编译的可执行文件
 ADD_EXECUTABLE(${TARGET_NAME} ${DIR_SRCS})

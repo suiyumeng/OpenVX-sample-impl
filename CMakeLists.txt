@@ -160,6 +160,10 @@ if (EXPERIMENTAL_USE_OPENCL)
     add_definitions( -DEXPERIMENTAL_USE_OPENCL )
     message( "-- Experimental opencl extension")
 endif (EXPERIMENTAL_USE_OPENCL)
+if (EXPERIMENTAL_USE_MY_TARGET)
+    add_definitions( -DEXPERIMENTAL_USE_MY_TARGET )
+    message( "-- Experimental my target extension")
+endif (EXPERIMENTAL_USE_MY_TARGET)
 message( "" )
 
 

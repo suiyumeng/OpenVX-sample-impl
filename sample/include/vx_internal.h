@@ -872,6 +872,9 @@ enum vx_target_priority_e {
 #if defined(EXPERIMENTAL_USE_VENUM)
     VX_TARGET_PRIORITY_VENUM,
 #endif
+#if defined(EXPERIMENTAL_USE_MY_TARGET)
+    VX_TARGET_PRIORITY_MY_TARGET,
+#endif
     /*! \brief Defines the priority of the C model target */
     VX_TARGET_PRIORITY_C_MODEL,
     /*! \brief Defines the maximum priority */

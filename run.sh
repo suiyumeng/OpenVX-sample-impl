@@ -24,10 +24,13 @@ export VX_CL_SOURCE_DIR=$ROOT_DIR/kernels/opencl
 
 # enable openvx log level
 export VX_ZONE_MASK=0xFFF3F
-export VX_ZONE_MASK=0x10023
+export VX_ZONE_MASK=0x11023
+export VX_ZONE_MASK=0x1182B
 
 # run test
 #vx_test -t <case_id>
-#$OPENVX_INSTALL_DIR/bin/vx_test -t $1
+#$OPENVX_INSTALL_DIR/bin/vx_test -t 0
+#$OPENVX_INSTALL_DIR/bin/vx_test $1 $2 $3 $4 $5 $6 $7 $8 $9
 
-$OPENVX_INSTALL_DIR/bin/openvx_test test/1920x1080_car.png
+#$OPENVX_INSTALL_DIR/bin/openvx_test $1 $2 $3 $4 $5 $6 $7 $8 $9
+$OPENVX_INSTALL_DIR/bin/openvx_test -t 0 test/1920x1080_car.png

@@ -96,6 +96,7 @@ def main():
     parser.add_option("--f16", dest="f16", help="Add -DEXPERIMENTAL_PLATFORM_SUPPORTS_16_FLOAT=ON to support VX_TYPE_FLOAT16", default=False, action='store_true')
     parser.add_option("--venum", dest="venum", help="Add -DEXPERIMENTAL_USE_VENUM=ON to build also raspberrypi 3B+ Neon target[Default False]", default=False, action='store_true')
     parser.add_option("--opencl", dest="opencl", help="Add -DEXPERIMENTAL_USE_OPENCL=ON to build also OpenCL target [Default False]", default=False, action='store_true')
+    parser.add_option("--mytarget", dest="mytarget", help="Add -DEXPERIMENTAL_USE_MY_TARGET=ON to build also my target [Default False]", default=False, action='store_true')
     # C Flags
     parser.add_option("--c_flags", dest="c_flags", help="Set C Compiler Flags -DCMAKE_C_FLAGS=" " [Default empty]", default='')
     parser.add_option("--cpp_flags", dest="cpp_flags", help="Set CPP Compiler Flags -DCMAKE_CXX_FLAGS=" " [Default empty]", default='')
@@ -233,6 +234,8 @@ def main():
         cmd += ['-DEXPERIMENTAL_USE_VENUM=ON']
     if options.opencl:
         cmd += ['-DEXPERIMENTAL_USE_OPENCL=ON']
+    if options.mytarget:
+        cmd += ['-DEXPERIMENTAL_USE_MY_TARGET=ON']
     cmd = ' '.join(cmd)
 
     print( "" )
