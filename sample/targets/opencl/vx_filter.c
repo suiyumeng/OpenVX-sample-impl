@@ -49,7 +49,6 @@ static vx_status VX_CALLBACK vxclCallOpenCLKernel(vx_node node, const vx_referen
     didx = 0;
 
     cl_kernel kernel = vxclk->kernels[plidx];
-
     pln = 0;
 
     argidx = 0;
@@ -67,6 +66,15 @@ static vx_status VX_CALLBACK vxclCallOpenCLKernel(vx_node node, const vx_referen
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &memory->strides[pln][VX_DIM_X]);
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &memory->strides[pln][VX_DIM_Y]);
     VX_PRINT(VX_ZONE_INFO, "Setting vx_image as Buffer with 2 parameters\n");
+    VX_PRINT(VX_ZONE_INFO, "memory->strides[%d][%u]=%d memory->strides[%d][%u]=%d\n",
+        pln, VX_DIM_X, memory->strides[pln][VX_DIM_X], pln, VX_DIM_Y, memory->strides[pln][VX_DIM_X]);
+
+    memory->hdls[pln] = clCreateBuffer(context->global[plidx],
+        CL_MEM_READ_WRITE,
+        ownComputeMemorySize(memory, pln),
+        NULL,
+        &err);
+    CL_ERROR_MSG(err, "clCreateBuffer");
 
     err = clSetKernelArg(kernel, argidx++, sizeof(cl_mem), &memory->hdls[pln]);
     CL_ERROR_MSG(err, "clSetKernelArg");
@@ -95,11 +103,16 @@ static vx_status VX_CALLBACK vxclCallOpenCLKernel(vx_node node, const vx_referen
     //Set Output
     ref = node->parameters[1];
     memory = &((vx_image)ref)->memory;
-
+    memory->hdls[pln] = clCreateBuffer(context->global[plidx],
+        CL_MEM_READ_WRITE,
+        ownComputeMemorySize(memory, pln),
+        NULL,
+        &err);
+    CL_ERROR_MSG(err, "clCreateBuffer");
     /* set the work dimensions */
     work_dim[0] = memory->dims[pln][VX_DIM_X];
     work_dim[1] = memory->dims[pln][VX_DIM_Y];
-
+    VX_PRINT(VX_ZONE_INFO,"work_dim[0]=%d work_dim[1]=%d\n",work_dim[0],work_dim[1]);
     //stride_x, stride_y
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &memory->strides[pln][VX_DIM_X]);
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &memory->strides[pln][VX_DIM_Y]);
@@ -138,7 +151,6 @@ static vx_status VX_CALLBACK vxclCallOpenCLKernel(vx_node node, const vx_referen
     ref = node->parameters[1];
 
     memory = &((vx_image)ref)->memory;
-
     err = clEnqueueReadBuffer(context->queues[plidx][didx],
         memory->hdls[pln],
         CL_TRUE, 0, ownComputeMemorySize(memory, pln),

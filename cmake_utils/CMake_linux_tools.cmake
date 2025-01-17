@@ -41,7 +41,8 @@ else()
     #set(ARCH_BIT "-mfpu=neon")
   else ()
     # need to force a more modern architecture than the degault m32 (i386).
-    set(ARCH_BIT "-m32 -march=core2" )
+    #set(ARCH_BIT "-m32 -march=core2" )
+    set(ARCH_BIT "-m32" )
   endif (TARGET_CPU STREQUAL "Atom")
 endif()
 

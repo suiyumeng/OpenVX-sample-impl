@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "c_model.h": "c",
+        "vx_compatibility.h": "c",
+        "vx.h": "c",
+        "vx_types.h": "c",
+        "vx_debug.h": "c",
+        "my_target.h": "c",
+        "vx_internal.h": "c",
+        "vx_khr_opencl.h": "c",
+        "vx_lib_xyz.h": "c",
+        "vx_lib_debug.h": "c",
+        "vx_mylib_module.h": "c",
+        "vx_helper.h": "c",
+        "vx_mytarget.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
+    }
+}

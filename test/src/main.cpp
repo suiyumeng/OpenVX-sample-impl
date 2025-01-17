@@ -4,7 +4,8 @@
 #include <VX/vx_types.h>
 
 vx_status vx_test_mytarget_3dlut(int argc, char *argv[]);
-vx_status vx_test_canny_edge_detection(int argc, char*argv[]);
+vx_status vx_test_edge_detection_canny(int argc, char*argv[]);
+vx_status vx_test_edge_detection_sobel3x3(int argc, char** argv);
 vx_status vx_test_lib_ext_laplacian3x3(int argc, char *argv[]);
 vx_status vx_test_mylib_rotation(int argc, char *argv[]);
 
@@ -20,7 +21,8 @@ typedef struct _vx_unittest_t {
 /*! The array of supported unit tests */
 vx_unittest unittests[] = {
     {VX_FAILURE, "mytarget 3dlut",&vx_test_mytarget_3dlut},
-    {VX_FAILURE, "canny edge detection", &vx_test_canny_edge_detection},
+    {VX_FAILURE, "canny edge detection", &vx_test_edge_detection_canny},
+    {VX_FAILURE, "sobel 3x3 edge detection", &vx_test_edge_detection_sobel3x3},
     {VX_FAILURE, "lib extras laplacian3x3 filter", &vx_test_lib_ext_laplacian3x3},
     {VX_FAILURE, "mylib rotation", &vx_test_mylib_rotation},
 };

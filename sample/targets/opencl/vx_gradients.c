@@ -68,6 +68,12 @@ static vx_status VX_CALLBACK vxclCallOpenCLKernel(vx_node node, const vx_referen
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &memory->strides[pln][VX_DIM_Y]);
     VX_PRINT(VX_ZONE_INFO, "Setting vx_image as Buffer with 2 parameters\n");
 
+    memory->hdls[pln] = clCreateBuffer(context->global[plidx],
+        CL_MEM_READ_WRITE,
+        ownComputeMemorySize(memory, pln),
+        NULL,
+        &err);
+    CL_ERROR_MSG(err, "clCreateBuffer");
     err = clSetKernelArg(kernel, argidx++, sizeof(cl_mem), &memory->hdls[pln]);
     CL_ERROR_MSG(err, "clSetKernelArg");
 
@@ -108,6 +114,12 @@ static vx_status VX_CALLBACK vxclCallOpenCLKernel(vx_node node, const vx_referen
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &stride_y);
     VX_PRINT(VX_ZONE_INFO, "Setting vx_image as Buffer with 2 parameters\n");
 
+    memory->hdls[pln] = clCreateBuffer(context->global[plidx],
+        CL_MEM_READ_WRITE,
+        ownComputeMemorySize(memory, pln),
+        NULL,
+        &err);
+    CL_ERROR_MSG(err, "clCreateBuffer");
     err = clSetKernelArg(kernel, argidx++, sizeof(cl_mem), &memory->hdls[pln]);
     CL_ERROR_MSG(err, "clSetKernelArg");
 
@@ -127,7 +139,11 @@ static vx_status VX_CALLBACK vxclCallOpenCLKernel(vx_node node, const vx_referen
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &stride_x1);
     err = clSetKernelArg(kernel, argidx++, sizeof(vx_int32), &stride_y1);
     VX_PRINT(VX_ZONE_INFO, "Setting vx_image as Buffer with 2 parameters\n");
-
+    memory->hdls[pln] = clCreateBuffer(context->global[plidx],
+        CL_MEM_READ_WRITE,
+        ownComputeMemorySize(memory, pln),
+        NULL,
+        &err);
     err = clSetKernelArg(kernel, argidx++, sizeof(cl_mem), &memory->hdls[pln]);
     CL_ERROR_MSG(err, "clSetKernelArg");
 
