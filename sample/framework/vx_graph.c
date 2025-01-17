@@ -986,8 +986,8 @@ static vx_bool postprocess_output_data_type(vx_graph graph, vx_uint32 n, vx_uint
                 vxAddLogEntry(&graph->base, *status,
                     "Node: %s: parameter[%u] is an invalid dimension %ux%u!\n",
                     graph->nodes[n]->kernel->name, p, img->width, img->height);
-                VX_PRINT(VX_ZONE_ERROR, "Node: %s: parameter[%u] is an invalid dimension %ux%u!\n",
-                    graph->nodes[n]->kernel->name, p, img->width, img->height);
+                VX_PRINT(VX_ZONE_ERROR, "Node: %s: parameter[%u] is an invalid dimension %ux%u! meta->dim.image.width=%u, meta->dim.image.height=%u\n",
+                    graph->nodes[n]->kernel->name, p, img->width, img->height, meta->dim.image.width, meta->dim.image.height);
                 (*num_errors)++;
                 return vx_false_e; // exit on error
             }

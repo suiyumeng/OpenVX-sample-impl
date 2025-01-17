@@ -18,7 +18,7 @@ find_package( OpenCV REQUIRED )
 SET(LIBS ${LIBS} ${OpenCV_LIBS})
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++11")
-SET(LIBS ${LIBS} pthread vx_xyz_lib openvx-debug-lib openvx-extras-lib openvx-helper openvx vxu openvx-mytarget)
+SET(LIBS ${LIBS} pthread vx_xyz_lib openvx-debug-lib openvx-extras-lib openvx-helper openvx vxu openvx-mytarget openvx-mylib)
 
 #6.add executable file，添加要编译的可执行文件
 ADD_EXECUTABLE(${TARGET_NAME} ${DIR_SRCS})

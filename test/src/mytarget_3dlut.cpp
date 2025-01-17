@@ -4,7 +4,7 @@
 #include <VX/vxu.h>
 #include <VX/vx_compatibility.h>
 #include <VX/vx_mytarget.h>
-vx_status vx_test_3dlut(int argc, char *argv[])
+vx_status vx_test_mytarget_3dlut(int argc, char *argv[])
 {
     vx_status status = VX_SUCCESS;
     unsigned long int i;

@@ -499,7 +499,7 @@ static vx_kernel addkernel(vx_context c,
     vx_uint32 t = 0;
     vx_size index = 0;
     vx_target_t *target = NULL;
-    vx_char targetName[VX_MAX_TARGET_NAME];
+    vx_char targetName[VX_MAX_TARGET_NAME] = {0};
 
     if (ownIsValidContext(context) == vx_false_e)
     {
@@ -526,7 +526,7 @@ static vx_kernel addkernel(vx_context c,
     index = strnindex(name, ':', VX_MAX_TARGET_NAME);
     if (index == VX_MAX_TARGET_NAME)
     {
-        strcpy(targetName,"khronos.any");
+        strcpy(targetName,"khronos.any"); // means c_model
     }
     else
     {
@@ -557,6 +557,7 @@ static vx_kernel addkernel(vx_context c,
     else
     {
         vxAddLogEntry((vx_reference)c, VX_ERROR_NO_RESOURCES, "No target named %s exists!\n", targetName);
+        VX_PRINT(VX_ZONE_ERROR, "No target named %s exists!\n", targetName);
         kernel = (vx_kernel_t *)ownGetErrorObject(context, VX_ERROR_NO_RESOURCES);
     }
     return kernel;
@@ -890,7 +891,7 @@ VX_API_ENTRY vx_status VX_API_CALL vxRemoveKernel(vx_kernel kernel)
         kernel->user_kernel)
     {
         vx_target_t *target = NULL;
-        vx_char targetName[VX_MAX_TARGET_NAME];
+        vx_char targetName[VX_MAX_TARGET_NAME] = {0};
         vx_uint32 kernelIdx = 0u;
         vx_context context = kernel->base.context;
 
@@ -915,6 +916,7 @@ VX_API_ENTRY vx_status VX_API_CALL vxRemoveKernel(vx_kernel kernel)
             {
                 break;
             }
+            VX_PRINT(VX_ZONE_ERROR, "No target named %s exists! kernel->name=%s\n", targetName, kernel->name);
             target = NULL;
         }
 

@@ -27,7 +27,7 @@
 #include "vx_internal.h"
 #include <vx_interface.h>
 
-static const vx_char name[VX_MAX_TARGET_NAME] = "mytarget.any";
+static const vx_char name[VX_MAX_TARGET_NAME] = "mytarget";
 
 /*! \brief Declares the list of all supported base kernels.
  * \ingroup group_implementation

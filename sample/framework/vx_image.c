@@ -1500,6 +1500,7 @@ VX_API_ENTRY vx_status VX_API_CALL vxAccessImagePatch(vx_image image,
         (addr == NULL) || (ptr == NULL))
     {
         status = VX_ERROR_INVALID_PARAMETERS;
+        VX_PRINT(VX_ZONE_ERROR, "Bad parameters!\n");
         goto exit;
     }
 
@@ -1508,6 +1509,7 @@ VX_API_ENTRY vx_status VX_API_CALL vxAccessImagePatch(vx_image image,
         (ownIsValidImage(image) == vx_false_e))
     {
         status = VX_ERROR_INVALID_REFERENCE;
+        VX_PRINT(VX_ZONE_ERROR, "Bad references!\n");
         goto exit;
     }
 
@@ -1532,6 +1534,8 @@ VX_API_ENTRY vx_status VX_API_CALL vxAccessImagePatch(vx_image image,
          (rect->start_y >= rect->end_y)))
     {
         status = VX_ERROR_INVALID_PARAMETERS;
+        VX_PRINT(VX_ZONE_ERROR, "Bad parameters! plane_index=%d, image->memory.nptrs=%d, image->planes=%d, rect->start_x=%d, rect->start_y=%d, rect->end_x=%d, rect->end_y=%d\n",
+            plane_index, image->memory.nptrs, image->planes, rect->start_x, rect->start_y, rect->end_x, rect->end_y);
         goto exit;
     }
 

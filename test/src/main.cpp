@@ -3,8 +3,10 @@
 #include <VX/vxu.h>
 #include <VX/vx_types.h>
 
-vx_status vx_test_3dlut(int argc, char *argv[]);
-int vx_test_canny_edge_detection(int argc, char** argv);
+vx_status vx_test_mytarget_3dlut(int argc, char *argv[]);
+vx_status vx_test_canny_edge_detection(int argc, char*argv[]);
+vx_status vx_test_lib_ext_laplacian3x3(int argc, char *argv[]);
+vx_status vx_test_mylib_rotation(int argc, char *argv[]);
 
 /*! \brief A local definition to point to a specific unit test */
 typedef vx_status (*vx_unittest_f)(int argc, char *argv[]);
@@ -17,10 +19,11 @@ typedef struct _vx_unittest_t {
 
 /*! The array of supported unit tests */
 vx_unittest unittests[] = {
-    {VX_FAILURE, "3d lut",&vx_test_3dlut},
+    {VX_FAILURE, "mytarget 3dlut",&vx_test_mytarget_3dlut},
     {VX_FAILURE, "canny edge detection", &vx_test_canny_edge_detection},
+    {VX_FAILURE, "lib extras laplacian3x3 filter", &vx_test_lib_ext_laplacian3x3},
+    {VX_FAILURE, "mylib rotation", &vx_test_mylib_rotation},
 };
-
 
 /*! \brief The main unit test.
  * \param argc The number of arguments.
